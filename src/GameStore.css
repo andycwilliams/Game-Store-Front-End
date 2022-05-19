@@ -75,6 +75,7 @@ h1 {
   color: #ecdcfc;
   cursor: pointer;
   font-size: 14px;
+  margin-right: 5px;
   padding: 10px 10px;
   text-decoration: none;
 }

@@ -2,12 +2,24 @@ import { useState } from "react";
 
 function ConsoleForm({ console: initialConsole, notify }) {
   const [console, setConsole] = useState(initialConsole);
-  const isAdd = initialConsole.id === 0;
+  const isAdd = initialConsole.console_id === 0;
 
   function handleChange(evt) {
     const clone = { ...console };
     clone[evt.target.name] = evt.target.value;
     setConsole(clone);
+  }
+
+  function handleSubmitRead(evt) {
+    evt.preventDefault();
+  }
+
+  function handleSubmitReadAll(evt) {
+    evt.preventDefault();
+  }
+
+  function handleSubmitManufacturer(evt) {
+    evt.preventDefault();
   }
 
   function handleSubmit(evt) {
@@ -53,7 +65,7 @@ function ConsoleForm({ console: initialConsole, notify }) {
 
   return (
     <>
-      <h1>{console.id > 0 ? "Edit" : "Add"} Console</h1>
+      <h1>{console.console_id > 0 ? "Edit" : "Add"} Console</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="artist">Model</label>
@@ -84,7 +96,7 @@ function ConsoleForm({ console: initialConsole, notify }) {
             id="memory_amount"
             name="memory_amount"
             className="form-control"
-            value={console.memoryAmount}
+            value={console.memory_amount}
             onChange={handleChange}
           />
         </div>

@@ -18,7 +18,7 @@ function Consoles() {
 
   function addClick() {
     setScopedConsole({
-      id: 0,
+      console_id: 0,
       model: "",
       manufacturer: "",
       memory_amount: "",
@@ -40,12 +40,14 @@ function Consoles() {
         setConsoles([...consoles, console]);
         break;
       case "delete":
-        setConsoles(consoles.filter((r) => r.id !== console.id));
+        setConsoles(
+          consoles.filter((r) => r.console_id !== console.console_id)
+        );
         break;
       case "edit":
         setConsoles(
           consoles.map((r) => {
-            if (r.id !== console.id) {
+            if (r.id !== console.console_id) {
               return r;
             } else {
               return console;
@@ -74,7 +76,16 @@ function Consoles() {
       <div>
         <h1 id="consoleTitle">Consoles</h1>
         <button className="btn btn-primary" type="button" onClick={addClick}>
-          Add a Console
+          Create
+        </button>
+        <button className="btn btn-primary" type="button" onClick={addClick}>
+          Read
+        </button>
+        <button className="btn btn-primary" type="button" onClick={addClick}>
+          Read All
+        </button>
+        <button className="btn btn-primary" type="button" onClick={addClick}>
+          Read By Manufacturer
         </button>
         <table id="consoles">
           <tr>
@@ -88,7 +99,7 @@ function Consoles() {
           </tr>
           <tbody>
             {consoles.map((r) => (
-              <ConsoleCard key={r.id} console={r} notify={notify} />
+              <ConsoleCard key={r.console_id} console={r} notify={notify} />
             ))}
           </tbody>
         </table>
