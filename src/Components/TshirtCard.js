@@ -14,7 +14,7 @@ function TshirtCard({ tshirt, notify }) {
       <td>{tshirt.size}</td>
       <td>{tshirt.color}</td>
       <td>{tshirt.description}</td>
-      <td>{tshirt.price}</td>
+      <td>${tshirt.price}</td>
       <td>{tshirt.quantity}</td>
       <td>
         <button

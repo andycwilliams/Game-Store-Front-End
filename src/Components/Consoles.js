@@ -2,10 +2,6 @@ import { useState, useEffect } from "react";
 import "../GameStore.css";
 import ConsoleCard from "./ConsoleCard.js";
 import ConsoleForm from "./ConsoleForm.js";
-// import GameCard from "./GameCard.js";
-// import GameForm from "./GameForm.js";
-// import TshirtCard from "./TshirtCard.js";
-// import TshirtForm from "./TshirtForm.js";
 
 function Consoles() {
   const [consoles, setConsoles] = useState([]);
@@ -21,8 +17,15 @@ function Consoles() {
   }, []);
 
   function addClick() {
-    const now = new Date();
-    setScopedConsole({ id: 0, title: "", artist: "", year: now.getFullYear() });
+    setScopedConsole({
+      id: 0,
+      model: "",
+      manufacturer: "",
+      memoryAmount: "",
+      processor: "",
+      price: "",
+      quantity: 0,
+    });
     setShowForm(true);
   }
 
@@ -81,6 +84,7 @@ function Consoles() {
             <th>Processor</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th>Delete / Edit</th>
           </tr>
           <tbody>
             {consoles.map((r) => (

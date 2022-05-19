@@ -17,11 +17,16 @@ function Tshirts() {
   }, []);
 
   function addClick() {
-    const now = new Date();
-    setScopedConsole({ id: 0, title: "", artist: "", year: now.getFullYear() });
+    setScopedConsole({
+      id: 0,
+      size: "",
+      color: "",
+      description: "",
+      price: "",
+      quantity: 0,
+    });
     setShowForm(true);
   }
-
   function notify({ action, tshirt, error }) {
     if (error) {
       setError(error);
@@ -76,6 +81,7 @@ function Tshirts() {
             <th>Description</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th>Delete / Edit</th>
           </tr>
           <tbody>
             {tshirts.map((r) => (

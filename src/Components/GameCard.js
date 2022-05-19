@@ -14,7 +14,7 @@ function GameCard({ games, notify }) {
       <td>{games.title}</td>
       <td>{games.esrbRating}</td>
       <td>{games.description}</td>
-      <td>{games.price}</td>
+      <td>${games.price}</td>
       <td>{games.studio}</td>
       <td>{games.quantity}</td>
       <td>

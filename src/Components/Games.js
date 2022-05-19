@@ -17,8 +17,15 @@ function Games() {
   }, []);
 
   function addClick() {
-    const now = new Date();
-    setScopedConsole({ id: 0, title: "", artist: "", year: now.getFullYear() });
+    setScopedConsole({
+      id: 0,
+      title: "",
+      esrbRating: "",
+      description: "",
+      price: "",
+      studio: "",
+      quantity: 0,
+    });
     setShowForm(true);
   }
 
@@ -77,6 +84,7 @@ function Games() {
             <th>Price</th>
             <th>Studio</th>
             <th>Quantity</th>
+            <th>Delete / Edit</th>
           </tr>
           <tbody>
             {consoles.map((r) => (
