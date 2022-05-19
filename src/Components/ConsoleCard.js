@@ -11,9 +11,12 @@ function ConsoleCard({ console, notify }) {
 
   return (
     <tr key={console.id}>
-      <td>{console.artist}</td>
-      <td>{console.album}</td>
-      <td>{console.year}</td>
+      <td>{console.model}</td>
+      <td>{console.manufacturer}</td>
+      <td>{console.memory_amount}</td>
+      <td>{console.processor}</td>
+      <td>{console.price}</td>
+      <td>{console.quantity}</td>
       <td>
         <button
           id="deleteButton"

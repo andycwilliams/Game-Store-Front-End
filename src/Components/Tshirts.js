@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import "./Consoles.css";
-import ConsoleCard from "./ConsoleCard.js";
-import ConsoleForm from "./ConsoleForm.js";
+import "../Consoles.css";
+import TshirtCard from "./TshirtCard.js";
+import TshirtForm from "./TshirtForm.js";
 
 function Consoles() {
   const [consoles, setConsoles] = useState([]);
@@ -10,11 +10,11 @@ function Consoles() {
   const [error, setError] = useState();
 
   useEffect(() => {
-    fetch("http://localhost:8080/console")
+    fetch("http://localhost:8080/tshirts")
       .then((response) => response.json())
       .then((result) => setConsoles(result))
       .catch(console.log);
-  }, []); // ", [])" makes it so it runs only the first time it loads. [showform] would make it load every time with showform
+  }, []);
 
   function addClick() {
     const now = new Date();
@@ -51,36 +51,35 @@ function Consoles() {
         setScopedConsole(console);
         return;
       default:
-        console.log("Bad action for notify. Check that code!");
+        console.log("Bad action for notify.");
     }
     setError("");
     setShowForm(false);
   }
 
   if (showForm) {
-    return <ConsoleForm console={scopedConsole} notify={notify} />;
+    return <TshirtForm console={scopedConsole} notify={notify} />;
   }
 
   return (
     <>
       {error && <div className="alert alert-danger">{error}</div>}
       <div>
-        <h1 id="consoleTitle">Consoles</h1>
+        <h1 id="consoleTitle">T-Shirts</h1>
         <button className="btn btn-primary" type="button" onClick={addClick}>
-          Add a Console
+          Add a T-shirt
         </button>
         <table id="consoles">
           <tr>
-            <th>Model</th>
-            <th>Manufacturer</th>
-            <th>Memory Amount</th>
-            <th>Processor</th>
+            <th>Size</th>
+            <th>Color</th>
+            <th>Description</th>
             <th>Price</th>
             <th>Quantity</th>
           </tr>
           <tbody>
             {consoles.map((r) => (
-              <ConsoleCard key={r.id} console={r} notify={notify} />
+              <TshirtCard key={r.id} console={r} notify={notify} />
             ))}
           </tbody>
         </table>
