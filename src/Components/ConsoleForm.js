@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function ConsoleForm({ console: initialConsole, notify }) {
   const [console, setConsole] = useState(initialConsole);
-  const isAdd = initialConsole.id === 0;
+  const isAdd = initialConsole.console_id === 0;
 
   function handleChange(evt) {
     const clone = { ...console };
@@ -15,7 +15,7 @@ function ConsoleForm({ console: initialConsole, notify }) {
 
     const url = isAdd
       ? "http://localhost:8080/console"
-      : `http://localhost:8080/console/${console.id}`;
+      : `http://localhost:8080/console/${console.console_id}`;
     const method = isAdd ? "POST" : "PUT";
     const expectedStatus = isAdd ? 201 : 204;
 
@@ -53,7 +53,7 @@ function ConsoleForm({ console: initialConsole, notify }) {
 
   return (
     <>
-      <h1>{console.id > 0 ? "Edit" : "Add"} Console</h1>
+      <h1>{console.console_id > 0 ? "Edit" : "Add"} Console</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="artist">Model</label>
@@ -84,7 +84,7 @@ function ConsoleForm({ console: initialConsole, notify }) {
             id="memory_amount"
             name="memory_amount"
             className="form-control"
-            value={console.memoryAmount}
+            value={console.memory_amount}
             onChange={handleChange}
           />
         </div>

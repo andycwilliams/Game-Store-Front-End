@@ -1,6 +1,10 @@
 function ConsoleCard({ console, notify }) {
+  function handleUpdate() {
+    window.console.log(console);
+    notify({ action: "edit-form", console: console });
+  }
   function handleDelete() {
-    fetch(`http://localhost:8080/console/${console.id}`, {
+    fetch(`http://localhost:8080/console/${console.console_id}`, {
       method: "DELETE",
     }).then(() =>
       notify({ action: "delete", console: console }).catch((error) =>
@@ -10,7 +14,8 @@ function ConsoleCard({ console, notify }) {
   }
 
   return (
-    <tr key={console.id}>
+    <tr key={console.console_id}>
+      <td>{console.console_id}</td>
       <td>{console.model}</td>
       <td>{console.manufacturer}</td>
       <td>{console.memory_amount}</td>
@@ -26,27 +31,27 @@ function ConsoleCard({ console, notify }) {
         >
           Create
         </button> */}
-        <button
+        {/* <button
           id="readButton"
           className="btn btn-read"
           type="button"
           onClick={() => notify({ action: "edit-form", consoles: console })}
         >
           Read
-        </button>
-        <button
+        </button> */}
+        {/* <button
           id="readAllButton"
           className="btn btn-readAll"
           type="button"
           onClick={() => notify({ action: "edit-form", consoles: console })}
         >
           Read All
-        </button>
+        </button> */}
         <button
           id="updateButton"
           className="btn btn-update"
           type="button"
-          onClick={() => notify({ action: "edit-form", console: console })}
+          onClick={handleUpdate}
         >
           Update
         </button>
@@ -58,14 +63,14 @@ function ConsoleCard({ console, notify }) {
         >
           Delete
         </button>
-        <button
+        {/* <button
           id="editButton"
           className="btn btn-manufacturer"
           type="button"
           onClick={() => notify({ action: "edit-form", consoles: console })}
         >
           By Manufacturer
-        </button>
+        </button> */}
       </td>
     </tr>
   );

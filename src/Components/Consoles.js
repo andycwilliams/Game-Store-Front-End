@@ -18,7 +18,7 @@ function Consoles() {
 
   function addClick() {
     setScopedConsole({
-      id: 0,
+      console_id: 0,
       model: "",
       manufacturer: "",
       memory_amount: "",
@@ -27,6 +27,39 @@ function Consoles() {
       quantity: 0,
     });
     setShowForm(true);
+  }
+
+  function handleRead(evt) {
+    evt.preventDefault();
+    console.log("Manufacturer");
+
+    const id = prompt("Enter an ID: ");
+
+    fetch(`http://localhost:8080/console/${id}`)
+      .then((response) => response.json())
+      .then((result) => setConsoles([result]))
+      .catch(console.log);
+  }
+
+  function handleReadAll(evt) {
+    evt.preventDefault();
+    console.log("Read all");
+    fetch("http://localhost:8080/console")
+      .then((response) => response.json())
+      .then((result) => setConsoles(result))
+      .catch(console.log);
+  }
+
+  function handleManufacturer(evt) {
+    evt.preventDefault();
+    console.log("Manufacturer");
+
+    const manufacturer = prompt("Enter a manufacturer: ");
+
+    fetch(`http://localhost:8080/console?manufacturer=${manufacturer}`)
+      .then((response) => response.json())
+      .then((result) => setConsoles(result))
+      .catch(console.log);
   }
 
   function notify({ action, console, error }) {
@@ -40,18 +73,31 @@ function Consoles() {
         setConsoles([...consoles, console]);
         break;
       case "delete":
-        setConsoles(consoles.filter((r) => r.id !== console.id));
+        setConsoles(
+          consoles.filter((r) => r.console_id !== console.console_id)
+        );
         break;
       case "edit":
         setConsoles(
           consoles.map((r) => {
-            if (r.id !== console.id) {
+            if (r.console_id !== console.console_id) {
               return r;
             } else {
               return console;
             }
           })
         );
+        break;
+      case "getAll":
+        setConsoles(
+          consoles.filter((r) => r.manufacturer !== console.manufacturer)
+        );
+        break;
+      case "get":
+        setConsoles();
+        break;
+      case "getByManufacturer":
+        setConsoles();
         break;
       case "edit-form":
         setShowForm(true);
@@ -74,10 +120,29 @@ function Consoles() {
       <div>
         <h1 id="consoleTitle">Consoles</h1>
         <button className="btn btn-primary" type="button" onClick={addClick}>
-          Add a Console
+          Create
+        </button>
+        <button className="btn btn-primary" type="button" onClick={handleRead}>
+          Read
+        </button>
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={handleReadAll}
+        >
+          Read All
+        </button>
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={handleManufacturer}
+          id="editButton"
+        >
+          Read By Manufacturer
         </button>
         <table id="consoles">
           <tr>
+            <th>ID</th>
             <th>Model</th>
             <th>Manufacturer</th>
             <th>Memory Amount</th>
@@ -88,7 +153,7 @@ function Consoles() {
           </tr>
           <tbody>
             {consoles.map((r) => (
-              <ConsoleCard key={r.id} console={r} notify={notify} />
+              <ConsoleCard key={r.console_id} console={r} notify={notify} />
             ))}
           </tbody>
         </table>
