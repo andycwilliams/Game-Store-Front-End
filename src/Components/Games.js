@@ -84,7 +84,7 @@ function Games() {
             <th>Price</th>
             <th>Studio</th>
             <th>Quantity</th>
-            <th>Delete / Edit</th>
+            <th>Queries</th>
           </tr>
           <tbody>
             {consoles.map((r) => (

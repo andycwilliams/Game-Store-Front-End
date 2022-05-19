@@ -81,7 +81,7 @@ function Tshirts() {
             <th>Description</th>
             <th>Price</th>
             <th>Quantity</th>
-            <th>Delete / Edit</th>
+            <th>Queries</th>
           </tr>
           <tbody>
             {tshirts.map((r) => (
