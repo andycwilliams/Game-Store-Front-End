@@ -10,24 +10,12 @@ function ConsoleForm({ console: initialConsole, notify }) {
     setConsole(clone);
   }
 
-  function handleSubmitRead(evt) {
-    evt.preventDefault();
-  }
-
-  function handleSubmitReadAll(evt) {
-    evt.preventDefault();
-  }
-
-  function handleSubmitManufacturer(evt) {
-    evt.preventDefault();
-  }
-
   function handleSubmit(evt) {
     evt.preventDefault();
 
     const url = isAdd
       ? "http://localhost:8080/console"
-      : `http://localhost:8080/console/${console.id}`;
+      : `http://localhost:8080/console/${console.console_id}`;
     const method = isAdd ? "POST" : "PUT";
     const expectedStatus = isAdd ? 201 : 204;
 

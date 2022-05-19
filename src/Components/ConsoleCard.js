@@ -1,4 +1,8 @@
 function ConsoleCard({ console, notify }) {
+  function handleUpdate() {
+    window.console.log(console);
+    notify({ action: "edit-form", console: console });
+  }
   function handleDelete() {
     fetch(`http://localhost:8080/console/${console.console_id}`, {
       method: "DELETE",
@@ -11,6 +15,7 @@ function ConsoleCard({ console, notify }) {
 
   return (
     <tr key={console.console_id}>
+      <td>{console.console_id}</td>
       <td>{console.model}</td>
       <td>{console.manufacturer}</td>
       <td>{console.memory_amount}</td>
@@ -46,7 +51,7 @@ function ConsoleCard({ console, notify }) {
           id="updateButton"
           className="btn btn-update"
           type="button"
-          onClick={() => notify({ action: "edit-form", console: console })}
+          onClick={handleUpdate}
         >
           Update
         </button>

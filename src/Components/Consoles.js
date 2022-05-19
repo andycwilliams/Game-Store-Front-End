@@ -29,6 +29,39 @@ function Consoles() {
     setShowForm(true);
   }
 
+  function handleRead(evt) {
+    evt.preventDefault();
+    console.log("Manufacturer");
+
+    const id = prompt("Enter an ID: ");
+
+    fetch(`http://localhost:8080/console/${id}`)
+      .then((response) => response.json())
+      .then((result) => setConsoles([result]))
+      .catch(console.log);
+  }
+
+  function handleReadAll(evt) {
+    evt.preventDefault();
+    console.log("Read all");
+    fetch("http://localhost:8080/console")
+      .then((response) => response.json())
+      .then((result) => setConsoles(result))
+      .catch(console.log);
+  }
+
+  function handleManufacturer(evt) {
+    evt.preventDefault();
+    console.log("Manufacturer");
+
+    const manufacturer = prompt("Enter a manufacturer: ");
+
+    fetch(`http://localhost:8080/console?manufacturer=${manufacturer}`)
+      .then((response) => response.json())
+      .then((result) => setConsoles(result))
+      .catch(console.log);
+  }
+
   function notify({ action, console, error }) {
     if (error) {
       setError(error);
@@ -47,13 +80,24 @@ function Consoles() {
       case "edit":
         setConsoles(
           consoles.map((r) => {
-            if (r.id !== console.console_id) {
+            if (r.console_id !== console.console_id) {
               return r;
             } else {
               return console;
             }
           })
         );
+        break;
+      case "getAll":
+        setConsoles(
+          consoles.filter((r) => r.manufacturer !== console.manufacturer)
+        );
+        break;
+      case "get":
+        setConsoles();
+        break;
+      case "getByManufacturer":
+        setConsoles();
         break;
       case "edit-form":
         setShowForm(true);
@@ -78,17 +122,27 @@ function Consoles() {
         <button className="btn btn-primary" type="button" onClick={addClick}>
           Create
         </button>
-        <button className="btn btn-primary" type="button" onClick={addClick}>
+        <button className="btn btn-primary" type="button" onClick={handleRead}>
           Read
         </button>
-        <button className="btn btn-primary" type="button" onClick={addClick}>
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={handleReadAll}
+        >
           Read All
         </button>
-        <button className="btn btn-primary" type="button" onClick={addClick}>
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={handleManufacturer}
+          id="editButton"
+        >
           Read By Manufacturer
         </button>
         <table id="consoles">
           <tr>
+            <th>ID</th>
             <th>Model</th>
             <th>Manufacturer</th>
             <th>Memory Amount</th>
