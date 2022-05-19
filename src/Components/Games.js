@@ -4,20 +4,20 @@ import GameCard from "./GameCard.js";
 import GameForm from "./GameForm.js";
 
 function Games() {
-  const [consoles, setConsoles] = useState([]);
+  const [games, setGames] = useState([]);
   const [showForm, setShowForm] = useState(false);
-  const [scopedConsole, setScopedConsole] = useState({});
+  const [scopedGames, setScopedGames] = useState({});
   const [error, setError] = useState();
 
   useEffect(() => {
     fetch("http://localhost:8080/games")
       .then((response) => response.json())
-      .then((result) => setConsoles(result))
+      .then((result) => setGames(result))
       .catch(console.log);
   }, []);
 
   function addClick() {
-    setScopedConsole({
+    setScopedGames({
       id: 0,
       title: "",
       esrbRating: "",
@@ -37,14 +37,14 @@ function Games() {
     }
     switch (action) {
       case "add":
-        setConsoles([...consoles, console]);
+        setGames([...games, console]);
         break;
       case "delete":
-        setConsoles(consoles.filter((r) => r.id !== console.id));
+        setGames(games.filter((r) => r.id !== console.id));
         break;
       case "edit":
-        setConsoles(
-          consoles.map((r) => {
+        setGames(
+          games.map((r) => {
             if (r.id !== console.id) {
               return r;
             } else {
@@ -55,7 +55,7 @@ function Games() {
         break;
       case "edit-form":
         setShowForm(true);
-        setScopedConsole(console);
+        setScopedGames(console);
         return;
       default:
         console.log("Bad action for notify.");
@@ -65,7 +65,7 @@ function Games() {
   }
 
   if (showForm) {
-    return <GameForm console={scopedConsole} notify={notify} />;
+    return <GameForm games={scopedGames} notify={notify} />;
   }
 
   return (
@@ -87,7 +87,7 @@ function Games() {
             <th>Queries</th>
           </tr>
           <tbody>
-            {consoles.map((r) => (
+            {games.map((r) => (
               <GameCard key={r.id} games={r} notify={notify} />
             ))}
           </tbody>
