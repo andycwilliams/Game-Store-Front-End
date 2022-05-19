@@ -18,6 +18,38 @@ function ConsoleCard({ console, notify }) {
       <td>${console.price}</td>
       <td>{console.quantity}</td>
       <td>
+        {/* <button
+          id="createButton"
+          className="btn btn-create"
+          type="button"
+          onClick={() => notify({ action: "edit-form", consoles: console })}
+        >
+          Create
+        </button> */}
+        <button
+          id="readButton"
+          className="btn btn-read"
+          type="button"
+          onClick={() => notify({ action: "edit-form", consoles: console })}
+        >
+          Read
+        </button>
+        <button
+          id="readAllButton"
+          className="btn btn-readAll"
+          type="button"
+          onClick={() => notify({ action: "edit-form", consoles: console })}
+        >
+          Read All
+        </button>
+        <button
+          id="updateButton"
+          className="btn btn-update"
+          type="button"
+          onClick={() => notify({ action: "edit-form", console: console })}
+        >
+          Update
+        </button>
         <button
           id="deleteButton"
           className="btn btn-danger mr-3"
@@ -28,11 +60,11 @@ function ConsoleCard({ console, notify }) {
         </button>
         <button
           id="editButton"
-          className="btn btn-secondary"
+          className="btn btn-manufacturer"
           type="button"
-          onClick={() => notify({ action: "edit-form", console: console })}
+          onClick={() => notify({ action: "edit-form", consoles: console })}
         >
-          Edit
+          By Manufacturer
         </button>
       </td>
     </tr>

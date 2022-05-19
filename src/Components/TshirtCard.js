@@ -18,6 +18,30 @@ function TshirtCard({ tshirt, notify }) {
       <td>{tshirt.quantity}</td>
       <td>
         <button
+          id="readButton"
+          className="btn btn-read"
+          type="button"
+          onClick={() => notify({ action: "edit-form", tshirts: tshirt })}
+        >
+          Read
+        </button>
+        <button
+          id="readAllButton"
+          className="btn btn-readAll"
+          type="button"
+          onClick={() => notify({ action: "edit-form", tshirts: tshirt })}
+        >
+          Read All
+        </button>
+        <button
+          id="updateButton"
+          className="btn btn-update"
+          type="button"
+          onClick={() => notify({ action: "edit-form", tshirts: tshirt })}
+        >
+          Update
+        </button>
+        <button
           id="deleteButton"
           className="btn btn-danger mr-3"
           type="button"
@@ -27,11 +51,19 @@ function TshirtCard({ tshirt, notify }) {
         </button>
         <button
           id="editButton"
-          className="btn btn-secondary"
+          className="btn btn-manufacturer"
           type="button"
-          onClick={() => notify({ action: "edit-form", tshirt: tshirt })}
+          onClick={() => notify({ action: "edit-form", tshirts: tshirt })}
         >
-          Edit
+          By Color
+        </button>
+        <button
+          id="editButton"
+          className="btn btn-manufacturer"
+          type="button"
+          onClick={() => notify({ action: "edit-form", tshirts: tshirt })}
+        >
+          By Size
         </button>
       </td>
     </tr>

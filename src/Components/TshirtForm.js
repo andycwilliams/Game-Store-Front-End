@@ -56,35 +56,46 @@ function TshirtForm({ tshirt: initialTshirt, notify }) {
       <h1>{console.id > 0 ? "Edit" : "Add"} T-Shirt</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="artist">Size</label>
+          <label htmlFor="artist">Model</label>
           <input
             type="text"
-            id="size"
-            name="size"
+            id="model"
+            name="model"
             className="form-control"
-            value={tshirt.size}
+            value={console.model}
             onChange={handleChange}
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="album">Color</label>
+          <label htmlFor="album">Manufacturer</label>
           <input
             type="text"
-            id="color"
-            name="color"
+            id="manufacturer"
+            name="manufacturer"
             className="form-control"
-            value={tshirt.color}
+            value={console.manufacturer}
             onChange={handleChange}
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="year">Description</label>
+          <label htmlFor="year">Memory Amount</label>
           <input
             type="text"
-            id="description"
-            name="description"
+            id="memory_amount"
+            name="memory_amount"
             className="form-control"
-            value={tshirt.description}
+            value={console.memory_amount}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="year">Processor</label>
+          <input
+            type="text"
+            id="processor"
+            name="processor"
+            className="form-control"
+            value={console.processor}
             onChange={handleChange}
           />
         </div>
@@ -95,7 +106,7 @@ function TshirtForm({ tshirt: initialTshirt, notify }) {
             id="price"
             name="price"
             className="form-control"
-            value={tshirt.price}
+            value={console.price}
             onChange={handleChange}
           />
         </div>
@@ -106,7 +117,7 @@ function TshirtForm({ tshirt: initialTshirt, notify }) {
             id="quantity"
             name="quantity"
             className="form-control"
-            value={tshirt.quantity}
+            value={console.quantity}
             onChange={handleChange}
           />
         </div>

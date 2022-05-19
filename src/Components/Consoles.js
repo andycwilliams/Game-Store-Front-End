@@ -21,7 +21,7 @@ function Consoles() {
       id: 0,
       model: "",
       manufacturer: "",
-      memoryAmount: "",
+      memory_amount: "",
       processor: "",
       price: "",
       quantity: 0,
@@ -84,7 +84,7 @@ function Consoles() {
             <th>Processor</th>
             <th>Price</th>
             <th>Quantity</th>
-            <th>Delete / Edit</th>
+            <th>Queries</th>
           </tr>
           <tbody>
             {consoles.map((r) => (

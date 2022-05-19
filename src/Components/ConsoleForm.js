@@ -81,8 +81,8 @@ function ConsoleForm({ console: initialConsole, notify }) {
           <label htmlFor="year">Memory Amount</label>
           <input
             type="text"
-            id="memoryAmount"
-            name="memoryAmount"
+            id="memory_amount"
+            name="memory_amount"
             className="form-control"
             value={console.memoryAmount}
             onChange={handleChange}
