@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function TshirtForm({ tshirt: initialTshirt, notify }) {
   const [tshirt, setTshirt] = useState(initialTshirt);
-  const isAdd = initialTshirt.id === 0;
+  const isAdd = initialTshirt.tShirtId === 0;
 
   function handleChange(evt) {
     const clone = { ...tshirt };
@@ -15,7 +15,7 @@ function TshirtForm({ tshirt: initialTshirt, notify }) {
 
     const url = isAdd
       ? "http://localhost:8080/tshirts"
-      : `http://localhost:8080/tshirts/${tshirt.id}`;
+      : `http://localhost:8080/tshirts/${tshirt.tShirtId}`;
     const method = isAdd ? "POST" : "PUT";
     const expectedStatus = isAdd ? 201 : 204;
 
@@ -27,6 +27,8 @@ function TshirtForm({ tshirt: initialTshirt, notify }) {
       },
       body: JSON.stringify(tshirt),
     };
+    
+    console.log(init)
 
     fetch(url, init)
       .then((response) => {
@@ -53,71 +55,60 @@ function TshirtForm({ tshirt: initialTshirt, notify }) {
 
   return (
     <>
-      <h1>{console.id > 0 ? "Edit" : "Add"} T-Shirt</h1>
+      <h1>{tshirt.tShirtId > 0 ? "Edit" : "Add"} T-Shirt</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="artist">Model</label>
+          <label htmlFor="Size">Size</label>
           <input
             type="text"
-            id="model"
-            name="model"
+            id="size"
+            name="size"
             className="form-control"
-            value={console.model}
+            value={tshirt.size}
             onChange={handleChange}
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="album">Manufacturer</label>
+          <label htmlFor="Color">Color</label>
           <input
             type="text"
-            id="manufacturer"
-            name="manufacturer"
+            id="color"
+            name="color"
             className="form-control"
-            value={console.manufacturer}
+            value={tshirt.color}
             onChange={handleChange}
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="year">Memory Amount</label>
+          <label htmlFor="Description">Description</label>
           <input
             type="text"
-            id="memory_amount"
-            name="memory_amount"
+            id="description"
+            name="description"
             className="form-control"
-            value={console.memory_amount}
+            value={tshirt.description}
             onChange={handleChange}
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="year">Processor</label>
-          <input
-            type="text"
-            id="processor"
-            name="processor"
-            className="form-control"
-            value={console.processor}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="year">Price</label>
+          <label htmlFor="Price">Price</label>
           <input
             type="text"
             id="price"
             name="price"
             className="form-control"
-            value={console.price}
+            value={tshirt.price}
             onChange={handleChange}
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="year">Quantity</label>
+          <label htmlFor="Quantity">Quantity</label>
           <input
             type="number"
             id="quantity"
             name="quantity"
             className="form-control"
-            value={console.quantity}
+            value={tshirt.quantity}
             onChange={handleChange}
           />
         </div>

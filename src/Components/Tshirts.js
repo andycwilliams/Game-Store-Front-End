@@ -18,12 +18,12 @@ function Tshirts() {
 
   function addClick() {
     setScopedConsole({
-      id: 0,
+      tShirtId: 0,
       size: "",
       color: "",
       description: "",
       price: "",
-      quantity: 0,
+      quantity: 0
     });
     setShowForm(true);
   }
@@ -38,16 +38,14 @@ function Tshirts() {
         setTshirts([...tshirts, tshirt]);
         break;
       case "delete":
-        setTshirts(tshirts.filter((r) => r.id !== tshirt.id));
+        setTshirts(tshirts.filter((r) => r.tShirtId !== tshirt.tShirtId));
         break;
       case "edit":
-        setTshirts(
-          tshirts.map((r) => {
-            if (r.id !== tshirt.id) {
+        setTshirts(tshirts.map((r) => {
+            if (r.tShirtId !== tshirt.itShirtId) {
               return r;
-            } else {
-              return tshirt;
             }
+            return tshirt;
           })
         );
         break;
@@ -63,7 +61,7 @@ function Tshirts() {
   }
 
   if (showForm) {
-    return <TshirtForm tshirt={scopedConsole} notify={notify} />;
+    return <TshirtForm tshirt={scopedConsole} notify={notify} />
   }
 
   return (
@@ -84,9 +82,8 @@ function Tshirts() {
             <th>Queries</th>
           </tr>
           <tbody>
-            {tshirts.map((r) => (
-              <TshirtCard key={r.id} tshirt={r} notify={notify} />
-            ))}
+            {tshirts.map(r => <TshirtCard key={r.tShirtId} tshirt={r} notify={notify} />
+            )}
           </tbody>
         </table>
       </div>
