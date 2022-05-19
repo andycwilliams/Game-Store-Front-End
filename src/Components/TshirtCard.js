@@ -1,22 +1,21 @@
-function ConsoleCard({ console, notify }) {
+function TshirtCard({ tshirt, notify }) {
   function handleDelete() {
-    fetch(`http://localhost:8080/console/${console.id}`, {
+    fetch(`http://localhost:8080/tshirts/${tshirt.id}`, {
       method: "DELETE",
     }).then(() =>
-      notify({ action: "delete", console: console }).catch((error) =>
+      notify({ action: "delete", tshirt: tshirt }).catch((error) =>
         notify({ action: "delete", error: error })
       )
     );
   }
 
   return (
-    <tr key={console.id}>
-      <td>{console.model}</td>
-      <td>{console.manufacturer}</td>
-      <td>{console.memory_amount}</td>
-      <td>{console.processor}</td>
-      <td>{console.price}</td>
-      <td>{console.quantity}</td>
+    <tr key={tshirt.id}>
+      <td>{tshirt.size}</td>
+      <td>{tshirt.color}</td>
+      <td>{tshirt.description}</td>
+      <td>{tshirt.price}</td>
+      <td>{tshirt.quantity}</td>
       <td>
         <button
           id="deleteButton"
@@ -30,7 +29,7 @@ function ConsoleCard({ console, notify }) {
           id="editButton"
           className="btn btn-secondary"
           type="button"
-          onClick={() => notify({ action: "edit-form", console: console })}
+          onClick={() => notify({ action: "edit-form", tshirt: tshirt })}
         >
           Edit
         </button>
@@ -39,4 +38,4 @@ function ConsoleCard({ console, notify }) {
   );
 }
 
-export default ConsoleCard;
+export default TshirtCard;

@@ -1,21 +1,21 @@
 import { useState } from "react";
 
-function ConsoleForm({ console: initialConsole, notify }) {
-  const [console, setConsole] = useState(initialConsole);
-  const isAdd = initialConsole.id === 0;
+function TshirtForm({ tshirt: initialTshirt, notify }) {
+  const [tshirt, setTshirt] = useState(initialTshirt);
+  const isAdd = initialTshirt.id === 0;
 
   function handleChange(evt) {
-    const clone = { ...console };
+    const clone = { ...tshirt };
     clone[evt.target.name] = evt.target.value;
-    setConsole(clone);
+    setTshirt(clone);
   }
 
   function handleSubmit(evt) {
     evt.preventDefault();
 
     const url = isAdd
-      ? "http://localhost:8080/console"
-      : `http://localhost:8080/console/${console.id}`;
+      ? "http://localhost:8080/tshirts"
+      : `http://localhost:8080/tshirts/${tshirt.id}`;
     const method = isAdd ? "POST" : "PUT";
     const expectedStatus = isAdd ? 201 : 204;
 
@@ -25,7 +25,7 @@ function ConsoleForm({ console: initialConsole, notify }) {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify(console),
+      body: JSON.stringify(tshirt),
     };
 
     fetch(url, init)
@@ -35,7 +35,7 @@ function ConsoleForm({ console: initialConsole, notify }) {
             // Before add, no useful ID
             return response.json();
           } else {
-            return console;
+            return tshirt;
           }
         }
         return Promise.reject(
@@ -53,49 +53,38 @@ function ConsoleForm({ console: initialConsole, notify }) {
 
   return (
     <>
-      <h1>{console.id > 0 ? "Edit" : "Add"} Console</h1>
+      <h1>{console.id > 0 ? "Edit" : "Add"} T-Shirt</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="artist">Model</label>
+          <label htmlFor="artist">Size</label>
           <input
             type="text"
-            id="model"
-            name="model"
+            id="size"
+            name="size"
             className="form-control"
-            value={console.model}
+            value={tshirt.size}
             onChange={handleChange}
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="album">Manufacturer</label>
+          <label htmlFor="album">Color</label>
           <input
             type="text"
-            id="manufacturer"
-            name="manufacturer"
+            id="color"
+            name="color"
             className="form-control"
-            value={console.manufacturer}
+            value={tshirt.color}
             onChange={handleChange}
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="year">Memory Amount</label>
+          <label htmlFor="year">Description</label>
           <input
             type="text"
-            id="memoryAmount"
-            name="memoryAmount"
+            id="description"
+            name="description"
             className="form-control"
-            value={console.memoryAmount}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="year">Processor</label>
-          <input
-            type="text"
-            id="processor"
-            name="processor"
-            className="form-control"
-            value={console.processor}
+            value={tshirt.description}
             onChange={handleChange}
           />
         </div>
@@ -106,7 +95,7 @@ function ConsoleForm({ console: initialConsole, notify }) {
             id="price"
             name="price"
             className="form-control"
-            value={console.price}
+            value={tshirt.price}
             onChange={handleChange}
           />
         </div>
@@ -117,7 +106,7 @@ function ConsoleForm({ console: initialConsole, notify }) {
             id="quantity"
             name="quantity"
             className="form-control"
-            value={console.quantity}
+            value={tshirt.quantity}
             onChange={handleChange}
           />
         </div>
@@ -138,4 +127,4 @@ function ConsoleForm({ console: initialConsole, notify }) {
   );
 }
 
-export default ConsoleForm;
+export default TshirtForm;

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import "../Consoles.css";
+import "../GameStore.css";
 import TshirtCard from "./TshirtCard.js";
 import TshirtForm from "./TshirtForm.js";
 
-function Consoles() {
-  const [consoles, setConsoles] = useState([]);
+function Tshirts() {
+  const [tshirts, setTshirts] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [scopedConsole, setScopedConsole] = useState({});
   const [error, setError] = useState();
@@ -12,7 +12,7 @@ function Consoles() {
   useEffect(() => {
     fetch("http://localhost:8080/tshirts")
       .then((response) => response.json())
-      .then((result) => setConsoles(result))
+      .then((result) => setTshirts(result))
       .catch(console.log);
   }, []);
 
@@ -22,7 +22,7 @@ function Consoles() {
     setShowForm(true);
   }
 
-  function notify({ action, console, error }) {
+  function notify({ action, tshirt, error }) {
     if (error) {
       setError(error);
       setShowForm(false);
@@ -30,25 +30,25 @@ function Consoles() {
     }
     switch (action) {
       case "add":
-        setConsoles([...consoles, console]);
+        setTshirts([...tshirts, tshirt]);
         break;
       case "delete":
-        setConsoles(consoles.filter((r) => r.id !== console.id));
+        setTshirts(tshirts.filter((r) => r.id !== tshirt.id));
         break;
       case "edit":
-        setConsoles(
-          consoles.map((r) => {
-            if (r.id !== console.id) {
+        setTshirts(
+          tshirts.map((r) => {
+            if (r.id !== tshirt.id) {
               return r;
             } else {
-              return console;
+              return tshirt;
             }
           })
         );
         break;
       case "edit-form":
         setShowForm(true);
-        setScopedConsole(console);
+        setScopedConsole(tshirt);
         return;
       default:
         console.log("Bad action for notify.");
@@ -58,7 +58,7 @@ function Consoles() {
   }
 
   if (showForm) {
-    return <TshirtForm console={scopedConsole} notify={notify} />;
+    return <TshirtForm tshirt={scopedConsole} notify={notify} />;
   }
 
   return (
@@ -78,8 +78,8 @@ function Consoles() {
             <th>Quantity</th>
           </tr>
           <tbody>
-            {consoles.map((r) => (
-              <TshirtCard key={r.id} console={r} notify={notify} />
+            {tshirts.map((r) => (
+              <TshirtCard key={r.id} tshirt={r} notify={notify} />
             ))}
           </tbody>
         </table>
@@ -88,4 +88,4 @@ function Consoles() {
   );
 }
 
-export default Consoles;
+export default Tshirts;

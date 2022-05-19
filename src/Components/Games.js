@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "../Consoles.css";
+import "../GameStore.css";
 import GameCard from "./GameCard.js";
 import GameForm from "./GameForm.js";
 

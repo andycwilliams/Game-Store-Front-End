@@ -1,13 +1,13 @@
 import { useState } from "react";
 
 function GameForm({ games: initialGame, notify }) {
-  const [games, setConsole] = useState(initialGame);
+  const [games, setGames] = useState(initialGame);
   const isAdd = initialGame.id === 0;
 
   function handleChange(evt) {
     const clone = { ...games };
     clone[evt.target.name] = evt.target.value;
-    setConsole(clone);
+    setGames(clone);
   }
 
   function handleSubmit(evt) {
@@ -25,7 +25,7 @@ function GameForm({ games: initialGame, notify }) {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify(console),
+      body: JSON.stringify(games),
     };
 
     fetch(url, init)
