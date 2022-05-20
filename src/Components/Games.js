@@ -18,7 +18,7 @@ function Games() {
 
   function addClick() {
     setScopedGames({
-      id: 0,
+      game_id: 0,
       title: "",
       esrbRating: "",
       description: "",
@@ -29,7 +29,61 @@ function Games() {
     setShowForm(true);
   }
 
-  function notify({ action, console, error }) {
+  function handleRead(evt) {
+    evt.preventDefault();
+    const id = prompt("Enter an ID: ");
+
+    fetch(`http://localhost:8080/games/${id}`)
+      .then((response) => response.json())
+      .then((result) => setGames([result]))
+      .catch(console.log);
+  }
+
+  function handleReadAll(evt) {
+    evt.preventDefault();
+    fetch("http://localhost:8080/games")
+      .then((response) => response.json())
+      .then((result) => setGames(result))
+      .catch(console.log);
+  }
+
+  function handleStudio(evt) {
+    evt.preventDefault();
+    console.log("Studio");
+
+    const studio = prompt("Enter a Studio: ");
+
+    fetch(`http://localhost:8080/games?studio=${studio}`)
+      .then((response) => response.json())
+      .then((result) => setGames(result))
+      .catch(console.log);
+  }
+
+  function handleTitle(evt) {
+    evt.preventDefault();
+    console.log("Title");
+
+    const title = prompt("Enter a Title: ");
+
+    fetch(`http://localhost:8080/games?title=${title}`)
+      .then((response) => response.json())
+      .then((result) => setGames(result))
+      .catch(console.log);
+  }
+
+  function handleEsrb(evt) {
+    evt.preventDefault();
+    console.log("Esrb");
+
+    const esrbRating = prompt("Enter a ESRB: ");
+
+    fetch(`http://localhost:8080/games?esrb=${esrbRating}`)
+      .then((response) => response.json())
+      .then((result) => setGames(result))
+      .catch(console.log);
+  }
+
+  function notify({ action, game, error }) {
     if (error) {
       setError(error);
       setShowForm(false);
@@ -37,25 +91,36 @@ function Games() {
     }
     switch (action) {
       case "add":
-        setGames([...games, console]);
+        setGames([...games, game]);
         break;
       case "delete":
-        setGames(games.filter((r) => r.id !== console.id));
+        setGames(games.filter((r) => r.game_id !== game.game_id));
         break;
       case "edit":
         setGames(
           games.map((r) => {
-            if (r.id !== console.id) {
+            if (r.game_id !== game.game_id) {
               return r;
             } else {
-              return console;
+              return game;
             }
           })
         );
         break;
+      case "getAll":
+          setGames(
+            games.filter((r) => r.studio !== game.studio)
+          );
+          break;
+      case "get":
+        setGames();
+        break;
+      case "getByStudio":
+        setGames();
+        break;
       case "edit-form":
         setShowForm(true);
-        setScopedGames(console);
+        setScopedGames(game);
         return;
       default:
         console.log("Bad action for notify.");
@@ -74,10 +139,45 @@ function Games() {
       <div>
         <h1 id="consoleTitle">Games</h1>
         <button className="btn btn-primary" type="button" onClick={addClick}>
-          Add a Game
+          Create
+        </button>
+        <button className="btn btn-primary" type="button" onClick={handleRead}>
+          Read
+        </button>
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={handleReadAll}
+        >
+          Read All
+        </button>
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={handleStudio}
+          id="editButton"
+        >
+          Read By Studio
+        </button>
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={handleEsrb}
+          id="editButton"
+        >
+          Read By ESRB Rating
+        </button>
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={handleTitle}
+          id="editButton"
+        >
+          Read By Title
         </button>
         <table id="consoles">
           <tr>
+            <th>ID</th>
             <th>Title</th>
             <th>ESRB Rating</th>
             <th>Description</th>
@@ -88,7 +188,7 @@ function Games() {
           </tr>
           <tbody>
             {games.map((r) => (
-              <GameCard key={r.id} games={r} notify={notify} />
+              <GameCard key={r.game_id} games={r} notify={notify} />
             ))}
           </tbody>
         </table>

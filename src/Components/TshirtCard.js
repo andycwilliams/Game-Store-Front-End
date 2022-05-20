@@ -1,13 +1,22 @@
 function TshirtCard({ tshirt, notify }) {
+
+  function handleUpdate() {
+    window.console.log(tshirt);
+    notify({ action: "edit-form", tshirt: tshirt });
+  }
+
   function handleDelete() {
     fetch(`http://localhost:8080/tshirts/${tshirt.tShirtId}`, {
-      method: "DELETE"})
-      .then(() => notify({ action: "delete", tshirt: tshirt }))
-      .catch((error) => notify({ action: "delete", error: error }));
+      method: "DELETE",
+    }).then(() => 
+      notify({ action: "delete", tshirt: tshirt }))
+      .catch((error) => 
+      notify({ action: "delete", error: error }));
   }
 
   return (
     <tr key={tshirt.tShirtId}>
+      <td>{tshirt.tShirtId}</td>
       <td>{tshirt.size}</td>
       <td>{tshirt.color}</td>
       <td>{tshirt.description}</td>
@@ -15,26 +24,10 @@ function TshirtCard({ tshirt, notify }) {
       <td>{tshirt.quantity}</td>
       <td>
         <button
-          id="readButton"
-          className="btn btn-read"
-          type="button"
-          onClick={() => notify({ action: "edit-form", tshirts: tshirt })}
-        >
-          Read
-        </button>
-        <button
-          id="readAllButton"
-          className="btn btn-readAll"
-          type="button"
-          onClick={() => notify({ action: "edit-form", tshirts: tshirt })}
-        >
-          Read All
-        </button>
-        <button
           id="updateButton"
           className="btn btn-update"
           type="button"
-          onClick={() => notify({ action: "edit-form", tshirts: tshirt })}
+          onClick={handleUpdate}
         >
           Update
         </button>
@@ -45,22 +38,6 @@ function TshirtCard({ tshirt, notify }) {
           onClick={handleDelete}
         >
           Delete
-        </button>
-        <button
-          id="editButton"
-          className="btn btn-manufacturer"
-          type="button"
-          onClick={() => notify({ action: "edit-form", tshirts: tshirt })}
-        >
-          By Color
-        </button>
-        <button
-          id="editButton"
-          className="btn btn-manufacturer"
-          type="button"
-          onClick={() => notify({ action: "edit-form", tshirts: tshirt })}
-        >
-          By Size
         </button>
       </td>
     </tr>

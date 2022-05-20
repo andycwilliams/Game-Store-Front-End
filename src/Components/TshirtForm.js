@@ -27,8 +27,6 @@ function TshirtForm({ tshirt: initialTshirt, notify }) {
       },
       body: JSON.stringify(tshirt),
     };
-    
-    console.log(init)
 
     fetch(url, init)
       .then((response) => {
@@ -47,7 +45,7 @@ function TshirtForm({ tshirt: initialTshirt, notify }) {
       .then((result) =>
         notify({
           action: isAdd ? "add" : "edit",
-          console: result,
+          tshirt: result,
         })
       )
       .catch((error) => notify({ error: error }));
@@ -58,7 +56,7 @@ function TshirtForm({ tshirt: initialTshirt, notify }) {
       <h1>{tshirt.tShirtId > 0 ? "Edit" : "Add"} T-Shirt</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="Size">Size</label>
+          <label htmlFor="artist">Size</label>
           <input
             type="text"
             id="size"
@@ -69,7 +67,7 @@ function TshirtForm({ tshirt: initialTshirt, notify }) {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="Color">Color</label>
+          <label htmlFor="album">Color</label>
           <input
             type="text"
             id="color"
@@ -80,7 +78,7 @@ function TshirtForm({ tshirt: initialTshirt, notify }) {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="Description">Description</label>
+          <label htmlFor="year">Description</label>
           <input
             type="text"
             id="description"

@@ -6,7 +6,7 @@ import TshirtForm from "./TshirtForm.js";
 function Tshirts() {
   const [tshirts, setTshirts] = useState([]);
   const [showForm, setShowForm] = useState(false);
-  const [scopedConsole, setScopedConsole] = useState({});
+  const [scopedTshirts, setScopedTshirts] = useState({});
   const [error, setError] = useState();
 
   useEffect(() => {
@@ -17,7 +17,7 @@ function Tshirts() {
   }, []);
 
   function addClick() {
-    setScopedConsole({
+    setScopedTshirts({
       tShirtId: 0,
       size: "",
       color: "",
@@ -27,6 +27,44 @@ function Tshirts() {
     });
     setShowForm(true);
   }
+
+  function handleRead(evt) {
+    evt.preventDefault();
+
+    const id = prompt("Enter an ID: ");
+
+    fetch(`http://localhost:8080/tshirts/${id}`)
+      .then((response) => response.json())
+      .then((result) => setTshirts([result]))
+      .catch(console.log);
+  }
+
+  function handleReadAll(evt) {
+    evt.preventDefault();
+    fetch("http://localhost:8080/tshirts")
+      .then((response) => response.json())
+      .then((result) => setTshirts(result))
+      .catch(console.log);
+  }
+
+  function handleColor(evt) {
+    evt.preventDefault();
+    const color = prompt("Enter a color: ");
+    fetch(`http://localhost:8080/tshirts/color/${color}`)
+      .then((response) => response.json())
+      .then((result) => setTshirts(result))
+      .catch(console.log);
+  }
+
+  function handleSize(evt) {
+    evt.preventDefault();
+    const size = prompt("Enter a Size: ");
+    fetch(`http://localhost:8080/tshirts/size/${size}`)
+      .then((response) => response.json())
+      .then((result) => setTshirts(result))
+      .catch(console.log);
+  }
+
   function notify({ action, tshirt, error }) {
     if (error) {
       setError(error);
@@ -44,14 +82,29 @@ function Tshirts() {
         setTshirts(tshirts.map((r) => {
             if (r.tShirtId !== tshirt.itShirtId) {
               return r;
+            } else {
+              return tshirt;
             }
-            return tshirt;
           })
         );
         break;
+      case "getAll":
+          setTshirts(
+            tshirts.filter((r) => r.color !== tshirt.color)
+          );
+          break;
+      case "get":
+        setTshirts();
+        break;
+      case "getByColor":
+        setTshirts();
+        break;
+      case "getBySize":
+        setTshirts();
+        break;
       case "edit-form":
         setShowForm(true);
-        setScopedConsole(tshirt);
+        setScopedTshirts(tshirt);
         return;
       default:
         console.log("Bad action for notify.");
@@ -61,7 +114,7 @@ function Tshirts() {
   }
 
   if (showForm) {
-    return <TshirtForm tshirt={scopedConsole} notify={notify} />
+    return <TshirtForm tshirt={scopedTshirts} notify={notify} />
   }
 
   return (
@@ -70,10 +123,38 @@ function Tshirts() {
       <div>
         <h1 id="consoleTitle">T-Shirts</h1>
         <button className="btn btn-primary" type="button" onClick={addClick}>
-          Add a T-shirt
+          Create
         </button>
+        <button className="btn btn-primary" type="button" onClick={handleRead}>
+          Read
+        </button>
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={handleReadAll}
+        >
+          Read All
+        </button>
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={handleColor}
+          id="editButton"
+        >
+          Read By Color        
+          </button>
+          <button
+          className="btn btn-primary"
+          type="button"
+          onClick={handleSize}
+          id="editButton"
+        >
+          Read By Size        
+          </button>
+          
         <table id="consoles">
           <tr>
+            <th>ID</th>
             <th>Size</th>
             <th>Color</th>
             <th>Description</th>

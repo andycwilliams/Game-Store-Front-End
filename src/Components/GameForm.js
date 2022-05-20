@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function GameForm({ games: initialGame, notify }) {
   const [games, setGames] = useState(initialGame);
-  const isAdd = initialGame.id === 0;
+  const isAdd = initialGame.game_id === 0;
 
   function handleChange(evt) {
     const clone = { ...games };
@@ -15,7 +15,7 @@ function GameForm({ games: initialGame, notify }) {
 
     const url = isAdd
       ? "http://localhost:8080/games"
-      : `http://localhost:8080/games/${games.id}`;
+      : `http://localhost:8080/games/${games.game_id}`;
     const method = isAdd ? "POST" : "PUT";
     const expectedStatus = isAdd ? 201 : 204;
 
@@ -35,7 +35,7 @@ function GameForm({ games: initialGame, notify }) {
             // Before add, no useful ID
             return response.json();
           } else {
-            return console;
+            return games;
           }
         }
         return Promise.reject(
@@ -45,7 +45,7 @@ function GameForm({ games: initialGame, notify }) {
       .then((result) =>
         notify({
           action: isAdd ? "add" : "edit",
-          console: result,
+          games: result,
         })
       )
       .catch((error) => notify({ error: error }));
@@ -53,7 +53,7 @@ function GameForm({ games: initialGame, notify }) {
 
   return (
     <>
-      <h1>{games.id > 0 ? "Edit" : "Add"} Game</h1>
+      <h1>{games.game_id > 0 ? "Edit" : "Add"} Game</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="artist">Title</label>
