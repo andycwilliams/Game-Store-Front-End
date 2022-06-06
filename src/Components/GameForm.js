@@ -11,7 +11,7 @@ function GameForm({ games: initialGame, notify }) {
   }
 
   function handleSubmit(evt) {
-    evt.preventDefault();
+    // evt.preventDefault();
 
     const url = isAdd
       ? "http://localhost:8080/games"
@@ -53,87 +53,89 @@ function GameForm({ games: initialGame, notify }) {
 
   return (
     <>
-      <h1>{games.game_id > 0 ? "Edit" : "Add"} Game</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="artist">Title</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            className="form-control"
-            value={games.title}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="album">ESRB Rating</label>
-          <input
-            type="text"
-            id="esrbRating"
-            name="esrbRating"
-            className="form-control"
-            value={games.esrbRating}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="year">Description</label>
-          <input
-            type="text"
-            id="description"
-            name="description"
-            className="form-control"
-            value={games.description}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="year">Studio</label>
-          <input
-            type="text"
-            id="studio"
-            name="studio"
-            className="form-control"
-            value={games.studio}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="year">Price</label>
-          <input
-            type="text"
-            id="price"
-            name="price"
-            className="form-control"
-            value={games.price}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="year">Quantity</label>
-          <input
-            type="number"
-            id="quantity"
-            name="quantity"
-            className="form-control"
-            value={games.quantity}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <button className="btn btn-primary mr-3" type="submit">
-            Save
-          </button>
-          <button
-            className="btn btn-secondary"
-            type="button"
-            onClick={() => notify({ action: "cancel" })}
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
+      <div class="form">
+        <h1>{games.game_id > 0 ? "Edit" : "Add"} Game</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="artist">Title: </label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              className="form-control"
+              value={games.title}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="album">ESRB Rating: </label>
+            <input
+              type="text"
+              id="esrbRating"
+              name="esrbRating"
+              className="form-control"
+              value={games.esrbRating}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="year">Description: </label>
+            <input
+              type="text"
+              id="description"
+              name="description"
+              className="form-control"
+              value={games.description}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="year">Studio: </label>
+            <input
+              type="text"
+              id="studio"
+              name="studio"
+              className="form-control"
+              value={games.studio}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="year">Price: </label>
+            <input
+              type="text"
+              id="price"
+              name="price"
+              className="form-control"
+              value={games.price}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="year">Quantity: </label>
+            <input
+              type="number"
+              id="quantity"
+              name="quantity"
+              className="form-control"
+              value={games.quantity}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <button className="btn btn-primary mr-3" type="submit">
+              Save
+            </button>
+            <button
+              className="btn btn-primary mr-3"
+              type="button"
+              onClick={() => notify({ action: "cancel" })}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
     </>
   );
 }

@@ -3,6 +3,26 @@ body {
   font-family: "Lucida Console", "Courier New", monospace;
 }
 
+/* --------------------------------- Header --------------------------------- */
+
+header {
+  background-color: #7013ce;
+  border-bottom: 1px solid;
+  color: #ecdcfc;
+  font-size: 40px;
+  font-weight: bold;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  color: #7013ce;
+  font-size: 4px;
+  text-align: center;
+}
+
+/* --------------------------------- Tables --------------------------------- */
+
 #consoleTitle {
   text-align: center;
   font-size: 30px;
@@ -11,6 +31,7 @@ body {
 #buttonPanel {
   text-align: center;
   margin: 50px 0;
+  /* border: 1px solid black; */
 }
 
 #consoles {
@@ -24,25 +45,11 @@ body {
   padding: 10px;
 }
 
-#deleteButton {
+/* #deleteButton {
   margin: 0 10px 0 0;
-}
+} */
 
-header {
-  background-color: #7013ce;
-  border-bottom: 1px solid;
-  color: #ecdcfc;
-  font-size: 40px;
-  font-weight: bold;
-  padding: 20px;
-  text-align: center;
-}
-
-h1 {
-  color: #7013ce;
-  font-size: 4px;
-  text-align: center;
-}
+/* --------------------------------- Buttons --------------------------------- */
 
 .btn.btn-primary {
   background-color: #9135ec;
@@ -51,9 +58,9 @@ h1 {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
   color: #ecdcfc;
   cursor: pointer;
-  font-size: 16px;
-  margin: 5px 5px;
-  padding: 15px 15px;
+  font-size: 18px;
+  margin-top: 15px;
+  padding: 15px;
   text-decoration: none;
 }
 
@@ -74,7 +81,7 @@ h1 {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
   color: #ecdcfc;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
   margin-right: 5px;
   padding: 10px 10px;
   text-decoration: none;
@@ -90,24 +97,15 @@ h1 {
   transform: scale(0.9);
 }
 
-/* .btn.btn-secondary {
-  background-color: #9135ec;
-  border-radius: 3px;
-  border: none;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
-  color: #ecdcfc;
-  cursor: pointer;
-  font-size: 14px;
-  padding: 10px 10px;
-  text-decoration: none;
+/* --------------------------------- Forms --------------------------------- */
+
+.form {
+  border: 1px solid black;
+  margin: 20px;
+  padding: 20px;
 }
 
-.btn.btn-secondary:hover {
-  background-color: #b475f2;
-  color: white;
-  transition-duration: 0.2s;
+.form h1 {
+  font-size: 24px;
+  text-align: left;
 }
-
-.btn.btn-secondary:focus {
-  transform: scale(0.9);
-} */

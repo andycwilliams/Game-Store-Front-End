@@ -108,10 +108,8 @@ function Games() {
         );
         break;
       case "getAll":
-          setGames(
-            games.filter((r) => r.studio !== game.studio)
-          );
-          break;
+        setGames(games.filter((r) => r.studio !== game.studio));
+        break;
       case "get":
         setGames();
         break;
@@ -184,7 +182,7 @@ function Games() {
             <th>Price</th>
             <th>Studio</th>
             <th>Quantity</th>
-            <th>Queries</th>
+            <th>Edit</th>
           </tr>
           <tbody>
             {games.map((r) => (

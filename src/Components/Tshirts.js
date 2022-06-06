@@ -23,7 +23,7 @@ function Tshirts() {
       color: "",
       description: "",
       price: "",
-      quantity: 0
+      quantity: 0,
     });
     setShowForm(true);
   }
@@ -79,7 +79,8 @@ function Tshirts() {
         setTshirts(tshirts.filter((r) => r.tShirtId !== tshirt.tShirtId));
         break;
       case "edit":
-        setTshirts(tshirts.map((r) => {
+        setTshirts(
+          tshirts.map((r) => {
             if (r.tShirtId !== tshirt.itShirtId) {
               return r;
             } else {
@@ -89,10 +90,8 @@ function Tshirts() {
         );
         break;
       case "getAll":
-          setTshirts(
-            tshirts.filter((r) => r.color !== tshirt.color)
-          );
-          break;
+        setTshirts(tshirts.filter((r) => r.color !== tshirt.color));
+        break;
       case "get":
         setTshirts();
         break;
@@ -114,7 +113,7 @@ function Tshirts() {
   }
 
   if (showForm) {
-    return <TshirtForm tshirt={scopedTshirts} notify={notify} />
+    return <TshirtForm tshirt={scopedTshirts} notify={notify} />;
   }
 
   return (
@@ -141,17 +140,17 @@ function Tshirts() {
           onClick={handleColor}
           id="editButton"
         >
-          Read By Color        
-          </button>
-          <button
+          Read By Color
+        </button>
+        <button
           className="btn btn-primary"
           type="button"
           onClick={handleSize}
           id="editButton"
         >
-          Read By Size        
-          </button>
-          
+          Read By Size
+        </button>
+
         <table id="consoles">
           <tr>
             <th>ID</th>
@@ -160,11 +159,12 @@ function Tshirts() {
             <th>Description</th>
             <th>Price</th>
             <th>Quantity</th>
-            <th>Queries</th>
+            <th>Edit</th>
           </tr>
           <tbody>
-            {tshirts.map(r => <TshirtCard key={r.tShirtId} tshirt={r} notify={notify} />
-            )}
+            {tshirts.map((r) => (
+              <TshirtCard key={r.tShirtId} tshirt={r} notify={notify} />
+            ))}
           </tbody>
         </table>
       </div>
