@@ -11,7 +11,7 @@ function TshirtForm({ tshirt: initialTshirt, notify }) {
   }
 
   function handleSubmit(evt) {
-    evt.preventDefault();
+    // evt.preventDefault();
 
     const url = isAdd
       ? "http://localhost:8080/tshirts"
@@ -53,76 +53,78 @@ function TshirtForm({ tshirt: initialTshirt, notify }) {
 
   return (
     <>
-      <h1>{tshirt.tShirtId > 0 ? "Edit" : "Add"} T-Shirt</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="artist">Size</label>
-          <input
-            type="text"
-            id="size"
-            name="size"
-            className="form-control"
-            value={tshirt.size}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="album">Color</label>
-          <input
-            type="text"
-            id="color"
-            name="color"
-            className="form-control"
-            value={tshirt.color}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="year">Description</label>
-          <input
-            type="text"
-            id="description"
-            name="description"
-            className="form-control"
-            value={tshirt.description}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="Price">Price</label>
-          <input
-            type="text"
-            id="price"
-            name="price"
-            className="form-control"
-            value={tshirt.price}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="Quantity">Quantity</label>
-          <input
-            type="number"
-            id="quantity"
-            name="quantity"
-            className="form-control"
-            value={tshirt.quantity}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <button className="btn btn-primary mr-3" type="submit">
-            Save
-          </button>
-          <button
-            className="btn btn-secondary"
-            type="button"
-            onClick={() => notify({ action: "cancel" })}
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
+      <div class="form">
+        <h1>{tshirt.tShirtId > 0 ? "Edit" : "Add"} T-Shirt</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="artist">Size: </label>
+            <input
+              type="text"
+              id="size"
+              name="size"
+              className="form-control"
+              value={tshirt.size}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="album">Color: </label>
+            <input
+              type="text"
+              id="color"
+              name="color"
+              className="form-control"
+              value={tshirt.color}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="year">Description: </label>
+            <input
+              type="text"
+              id="description"
+              name="description"
+              className="form-control"
+              value={tshirt.description}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="Price">Price: </label>
+            <input
+              type="text"
+              id="price"
+              name="price"
+              className="form-control"
+              value={tshirt.price}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="Quantity">Quantity: </label>
+            <input
+              type="number"
+              id="quantity"
+              name="quantity"
+              className="form-control"
+              value={tshirt.quantity}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <button className="btn btn-primary mr-3" type="submit">
+              Save
+            </button>
+            <button
+              className="btn btn-primary mr-3"
+              type="button"
+              onClick={() => notify({ action: "cancel" })}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
     </>
   );
 }

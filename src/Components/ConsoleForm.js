@@ -11,7 +11,7 @@ function ConsoleForm({ console: initialConsole, notify }) {
   }
 
   function handleSubmit(evt) {
-    evt.preventDefault();
+    // evt.preventDefault();
 
     const url = isAdd
       ? "http://localhost:8080/console"
@@ -53,87 +53,89 @@ function ConsoleForm({ console: initialConsole, notify }) {
 
   return (
     <>
-      <h1>{console.console_id > 0 ? "Edit" : "Add"} Console</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="artist">Model</label>
-          <input
-            type="text"
-            id="model"
-            name="model"
-            className="form-control"
-            value={console.model}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="album">Manufacturer</label>
-          <input
-            type="text"
-            id="manufacturer"
-            name="manufacturer"
-            className="form-control"
-            value={console.manufacturer}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="year">Memory Amount</label>
-          <input
-            type="text"
-            id="memory_amount"
-            name="memory_amount"
-            className="form-control"
-            value={console.memory_amount}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="year">Processor</label>
-          <input
-            type="text"
-            id="processor"
-            name="processor"
-            className="form-control"
-            value={console.processor}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="year">Price</label>
-          <input
-            type="text"
-            id="price"
-            name="price"
-            className="form-control"
-            value={console.price}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="year">Quantity</label>
-          <input
-            type="number"
-            id="quantity"
-            name="quantity"
-            className="form-control"
-            value={console.quantity}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="mb-3">
-          <button className="btn btn-primary mr-3" type="submit">
-            Save
-          </button>
-          <button
-            className="btn btn-secondary"
-            type="button"
-            onClick={() => notify({ action: "cancel" })}
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
+      <div class="form">
+        <h1>{console.console_id > 0 ? "Edit" : "Add"} Console</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label htmlFor="artist">Model: </label>
+            <input
+              type="text"
+              id="model"
+              name="model"
+              className="form-control"
+              value={console.model}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="album">Manufacturer: </label>
+            <input
+              type="text"
+              id="manufacturer"
+              name="manufacturer"
+              className="form-control"
+              value={console.manufacturer}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="year">Memory Amount: </label>
+            <input
+              type="text"
+              id="memory_amount"
+              name="memory_amount"
+              className="form-control"
+              value={console.memory_amount}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="year">Processor: </label>
+            <input
+              type="text"
+              id="processor"
+              name="processor"
+              className="form-control"
+              value={console.processor}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="year">Price: </label>
+            <input
+              type="text"
+              id="price"
+              name="price"
+              className="form-control"
+              value={console.price}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="year">Quantity: </label>
+            <input
+              type="number"
+              id="quantity"
+              name="quantity"
+              className="form-control"
+              value={console.quantity}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <button className="btn btn-primary mr-3" type="submit">
+              Save
+            </button>
+            <button
+              className="btn btn-primary mr-3"
+              type="button"
+              onClick={() => notify({ action: "cancel" })}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
     </>
   );
 }

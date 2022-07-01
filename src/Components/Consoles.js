@@ -149,7 +149,7 @@ function Consoles() {
             <th>Processor</th>
             <th>Price</th>
             <th>Quantity</th>
-            <th>Queries</th>
+            <th>Edit</th>
           </tr>
           <tbody>
             {consoles.map((r) => (
